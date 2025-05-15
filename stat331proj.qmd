@@ -3,6 +3,7 @@ title: "STAT331 project"
 format: html
 editor: visual
 embed-resources: true
+author: Cassidy Gertzfield, Brandon Montalvo, Lauren Hu, Rapha Coutin
 ---
 
 ## Quarto
