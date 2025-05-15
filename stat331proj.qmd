@@ -4,6 +4,7 @@ format: html
 editor: visual
 embed-resources: true
 author: Cassidy Gertzfield, Brandon Montalvo, Lauren Hu, Rapha Coutin
+code-fold: true
 ---
 
 ## Quarto
