@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+.gitignore
+PA6.qmd
+PA6.html
+stat331-PA6.Rproj
