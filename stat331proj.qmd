@@ -1,13 +1,21 @@
 ---
-title: "STAT331 project"
-format: html
-editor: visual
-embed-resources: true
-author: Cassidy Gertzfield, Brandon Montalvo, Lauren Hu, Rapha Coutin
-code-fold: true
+title: "STAT331 Project"
+author: "Cassidy Gertzfield, Brandon Montalvo, Lauren Hu, Rapha Coutin"
+format:
+  html:
+    embed-resources: true
+    code-tools:       true
+    toc:              true
+    code-fold:        true
+editor: source
+execute:
+  error:   true
+  echo:    true
+  message: false
+  warning: false
 ---
 
-```{r}
+```{r importdata}
 # import data sets
 library(readr)
 library(tidyverse)
@@ -17,15 +25,7 @@ happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
 ```
 
--   Join the two datasets into one (long) dataset ...
-
-    -   where each observation is a country / year
-
-    -   There should be a column for each quantitative variable as well as the country and year
-
-    -   You may need to do some additional data cleaning before joining (see below)
-
-```{r}
+```{r pivot}
 ## make long data set 
 happy <- happy|>
   pivot_longer(cols = `2005`:`2023`,
@@ -38,9 +38,15 @@ income <- income|>
                values_to = "avg_daily_inc")
 ```
 
-```{r}
+```{r merge}
 ## merge into one data set 
 happy_income <- happy|>
   left_join(income, 
             by = c("year","country"))
+```
+
+```{r NAs}
+## deal with missing values 
+happy_income <- happy_income|>
+  filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
