@@ -7,8 +7,40 @@ author: Cassidy Gertzfield, Brandon Montalvo, Lauren Hu, Rapha Coutin
 code-fold: true
 ---
 
-This is the change made by Rapha Coutin.
+```{r}
+# import data sets
+library(readr)
+library(tidyverse)
 
-This change was made by Brandon
 
-This change was made by Lauren
+happy <- read_csv("hapiscore_whr.csv")
+income <- read_csv("mincpcap_cppp.csv")
+```
+
+-   Join the two datasets into one (long) dataset ...
+
+    -   where each observation is a country / year
+
+    -   There should be a column for each quantitative variable as well as the country and year
+
+    -   You may need to do some additional data cleaning before joining (see below)
+
+```{r}
+## make long data set 
+happy <- happy|>
+  pivot_longer(cols = `2005`:`2023`,
+               names_to = "year",
+               values_to = "happy_score")
+
+income <- income|>
+  pivot_longer(cols = `1800`:`2100`,
+               names_to = "year",
+               values_to = "avg_daily_inc")
+```
+
+```{r}
+## merge into one data set 
+happy_income <- happy|>
+  left_join(income, 
+            by = c("year","country"))
+```
