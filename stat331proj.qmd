@@ -50,3 +50,17 @@ happy_income <- happy|>
 happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
+
+### Data & Cleaning Process 
+
+The primary data on life satisfaction comes from the World Happiness Report published by the Sustainable Development Solutions Network, based on surveys conducted by the Gallup World Poll. The key question, known as the Cantril Ladder, asks people to imagine a ladder from 0 (worst possible life) to 10 (best possible life) and say where they stand right now. Gapminder imported this data for 149 counties from 2005-2020. For recent years, about two-thirds of countries have 2020 survey data and the rest use 2018 or 2019 data.
+
+Income data is compiled by Gapminder, which integrates World Bank household survey data and historical estimates. The income data shows the average daily household income or spending per person, adjusted to 2017 purchasing power parity (PPP) dollars. For countries lacking direct survey data, Gapminder estimated income based on GDP per capita and extended estimates historically back to 1800 and forward to 2100 using GDP growth rates.
+
+Our observational unit is a combination of year and country. Our data set includes average household income and life satisfaction scores for up to 149 countries, mostly between 2005 and 2020. The data for happiness score collected by Gallup World Poll is reported in the World Happiness Report and is put together by Gapminder (happiness score was converted from a 0-10 scale to a 0-100 scale), and the data for daily income (for years 1981 to 2019) comes from the World Development Indicators published by the World Bank and is compiled by Gapminder.
+
+We hypothesize that a country’s average daily income and happiness are positively related, with happiness increasing more per increase in average income for smaller average incomes and tapering off towards the upper end of income values. On an individual level, the argument could be made that having more money feels hollow and leads to a decrease in happiness. However, we are looking at the average household’s income across an entire country. A higher average daily income may relate to lower poverty levels and more disposable income, and thus less stress. A report from [outworldindata.com](http://outworldindata.com) (linked below) shows a clear positive relation between GDP per capita and average happiness (as registered on the Cantril Ladder scale) across multiple countries. The assumption is that when a country’s people are able to meet their basic needs and have financial security, they are happier. 
+
+To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized them so that each row represented a specific country and year. We then combined the two data sets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
+
+<https://ourworldindata.org/happiness-and-life-satisfaction>
