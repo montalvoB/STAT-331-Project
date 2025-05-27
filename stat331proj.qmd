@@ -51,7 +51,7 @@ happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
 
-### Data & Cleaning Process
+### Introduction & Data 
 
 This analysis explores the relationship between average household income and life satisfaction across countries over time.
 
@@ -62,6 +62,8 @@ Income data is compiled by Gapminder, which integrates World Bank household surv
 Our observational unit is a combination of year and country. Our data set includes average household income and life satisfaction scores for up to 149 countries, mostly between 2005 and 2020. The data for happiness score collected by Gallup World Poll is reported in the World Happiness Report and is put together by Gapminder (happiness score was converted from a 0-10 scale to a 0-100 scale), and the data for daily income (for years 1981 to 2019) comes from the World Development Indicators published by the World Bank and is compiled by Gapminder.
 
 We hypothesize that a country’s average daily income and happiness are positively related, with happiness increasing more per increase in average income for smaller average incomes and tapering off towards the upper end of income values. On an individual level, the argument could be made that having more money feels hollow and leads to a decrease in happiness. However, we are looking at the average household’s income across an entire country. A higher average daily income may relate to lower poverty levels and more disposable income, and thus less stress. A report from [outworldindata.com](http://outworldindata.com) (linked below) shows a clear positive relation between GDP per capita and average happiness (as registered on the Cantril Ladder scale) across multiple countries. The assumption is that when a country’s people are able to meet their basic needs and have financial security, they are happier. 
+
+### Cleaning Process
 
 To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized them so that each row represented a specific country and year. We then combined the two datasets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
 
