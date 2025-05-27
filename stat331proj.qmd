@@ -51,7 +51,9 @@ happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
 
-### Data & Cleaning Process 
+### Data & Cleaning Process
+
+This analysis explores the relationship between average household income and life satisfaction across countries over time.
 
 The primary data on life satisfaction comes from the World Happiness Report published by the Sustainable Development Solutions Network, based on surveys conducted by the Gallup World Poll. The key question, known as the Cantril Ladder, asks people to imagine a ladder from 0 (worst possible life) to 10 (best possible life) and say where they stand right now. Gapminder imported this data for 149 counties from 2005-2020. For recent years, about two-thirds of countries have 2020 survey data and the rest use 2018 or 2019 data.
 
@@ -63,6 +65,6 @@ We hypothesize that a country’s average daily income and happiness are positiv
 
 To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized them so that each row represented a specific country and year. We then combined the two datasets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
 
-### References 
+### References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
