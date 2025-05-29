@@ -21,6 +21,7 @@ library(readr)
 library(tidyverse)
 library(broom)
 library(knitr)
+library(kableExtra)
 
 happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
@@ -92,7 +93,9 @@ happy_income_averaged |>
 model <- lm(happy_score ~ log(avg_daily_inc),
             data = happy_income_averaged) 
 
-tidy(model) |> kable()
+tidy(model) |> 
+  kable() |> 
+  add_header_above(header = c("Missing Information in Fish Data Set" = 5), bold = TRUE)
 
 ```
 
