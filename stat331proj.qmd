@@ -51,7 +51,7 @@ happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
 
-### Introduction & Data 
+### Introduction & Data
 
 This analysis explores the relationship between average household income and life satisfaction across countries over time.
 
