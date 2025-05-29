@@ -19,7 +19,8 @@ execute:
 # import data sets
 library(readr)
 library(tidyverse)
-
+library(broom)
+library(knitr)
 
 happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
@@ -51,7 +52,7 @@ happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
 
-### Introduction & Data 
+### Introduction & Data
 
 This analysis explores the relationship between average household income and life satisfaction across countries over time.
 
@@ -66,6 +67,38 @@ We hypothesize that a country’s average daily income and happiness are positiv
 ### Cleaning Process
 
 To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized them so that each row represented a specific country and year. We then combined the two datasets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
+
+### Linear Regression
+
+```{r}
+happy_income_averaged <- happy_income |> 
+  group_by(country) |> 
+  summarise(happy_score = mean(happy_score),
+            avg_daily_inc = log(mean(avg_daily_inc))) 
+
+happy_income_averaged |> 
+  ggplot(mapping = aes(x = avg_daily_inc,
+                       y = happy_score)) + 
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  labs(title = "Happiess vs Daily Average Income with Log transformation",
+       x = "log(Average Daily Income)",
+       y = "Happiness Score",
+       caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.")
+```
+
+```{r}
+
+model <- lm(happy_score ~ log(avg_daily_inc),
+            data = happy_income_averaged) 
+
+tidy(model) |> kable()
+
+```
+
+Linear Relationship: $$ y = 23.24123 + 18.62327\ln(x)$$
+
+ $$e^y = e^{23.23123}\cdot x^{18.62327}$$
 
 ### References
 
