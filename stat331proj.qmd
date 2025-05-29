@@ -21,6 +21,7 @@ library(readr)
 library(tidyverse)
 library(broom)
 library(knitr)
+library(kableExtra)
 
 happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
@@ -70,35 +71,51 @@ To prepare our data for analysis, we started with two data sets—one with world
 
 ### Linear Regression
 
-```{r}
+In order to conduct the following linear regression we took the mean happy score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to the shape of the plot.
+
+**Linear Relationship**: $$ y = 23.24123 + 18.62327\ln(x)$$
+
+$$e^y = e^{23.23123}\cdot x^{18.62327}$$
+
+```{r LM}
+# getting the mean of both variables for each country
 happy_income_averaged <- happy_income |> 
   group_by(country) |> 
   summarise(happy_score = mean(happy_score),
             avg_daily_inc = log(mean(avg_daily_inc))) 
 
+# plotting the linear regression with a scatter plot
 happy_income_averaged |> 
   ggplot(mapping = aes(x = avg_daily_inc,
                        y = happy_score)) + 
   geom_point() +
   geom_smooth(method = "lm") + 
-  labs(title = "Happiess vs Daily Average Income with Log transformation",
+  labs(title = "Happiness vs Average Daily Income with Log transformation",
        x = "log(Average Daily Income)",
        y = "Happiness Score",
        caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.")
 ```
 
-```{r}
+```{r estimates}
+
 
 model <- lm(happy_score ~ log(avg_daily_inc),
             data = happy_income_averaged) 
 
-tidy(model) |> kable()
+tidy(model) |> 
+  kable(col.names = c("Term",
+                      "Estimate",
+                      "Standard Error",
+                      "Statistic",
+                      "P-Value"))|>
+  kable_styling(position = "center",
+                bootstrap_options = "striped")|>
+  row_spec(0, bold = T)
+
 
 ```
 
-Linear Relationship: $$ y = 23.24123 + 18.62327\ln(x)$$
-
- $$e^y = e^{23.23123}\cdot x^{18.62327}$$
+According to Table 1, the intercept for the model is 38.24. This means that when a country's average daily income is \$0, their average happiness score is 38.24 out of 100. The coefficient for the logged average daily income is 18.62. For each 1% increase in a country's average daily income, their happiness score increases by an average of 18.62 points.
 
 ### References
 
