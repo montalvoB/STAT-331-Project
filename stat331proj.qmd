@@ -69,13 +69,15 @@ We hypothesize that a country’s average daily income and happiness are positiv
 
 To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized them so that each row represented a specific country and year. We then combined the two datasets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
 
-### Linear Regression
+## Linear Regression
 
 In order to conduct the following linear regression we took the mean happy score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to the shape of the plot.
 
-**Linear Relationship**: $$ y = 23.24123 + 18.62327\ln(x)$$
+##Linear Relationship\*\*: $$ y = 23.24 + 18.62\ln(x)$$
 
 $$e^y = e^{23.23123}\cdot x^{18.62327}$$
+
+Where y-hati is the estimated happiness score out of 100 and xi is the average daily income in 2017 purchasing power parity (PPP) dollars per country.
 
 ```{r LM}
 # getting the mean of both variables for each country
