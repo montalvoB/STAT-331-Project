@@ -169,6 +169,8 @@ According to Figure 3, there is a strong, positive linear relationship with no a
 
 ### Regression Model Estimates
 
+The following table displays the model estimates for the linear regression ran above.
+
 ```{r estimates}
 #| tbl-cap: "Table 1: Regression Model Estimates"
 
@@ -197,6 +199,7 @@ According to Table 1, the intercept for the model is 38.24. This means that when
 The following table displays the statistics for the fit of the regression model.
 
 ```{r modelfit}
+#| tbl-cap: "Table 2: Model Fit Estimates"
 
 var_response <- var(happy_income_averaged$happy_score)
 var_fitted <- var(fitted(model))
@@ -219,7 +222,7 @@ model_fit_summary |>
   kable_styling(bootstrap_options = "striped")
 ```
 
-The R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
+According to Table 2, the R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
 
 ## References
 
