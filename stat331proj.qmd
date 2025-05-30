@@ -101,7 +101,7 @@ As we can see, the relationship between average daily income and happiness is po
 The following plot displays how the trend between the log of average daily income and happiness score per country changes over the years 2005-2023.
 
 ```{r}
-#| fig-cap: "Figure 3: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
+#| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
 
 anim_plot <- happy_income |> 
   mutate(year = as.integer(year)) |> 
@@ -111,7 +111,7 @@ anim_plot <- happy_income |>
   geom_point(alpha = 0.5,
              color = "steelblue4",
              show.legend = F) + 
-  labs(x = "Average Daily Income", 
+  labs(x = "Average Daily Income (2017 PPP Dollars)", 
        y = "", 
        title = "Country's Happiness Score and Average Daily Income Years 2005 - 2023", 
        subtitle = "Happiness Score (0 - 100)                    Year: {frame_time}") + 
@@ -119,14 +119,14 @@ anim_plot <- happy_income |>
   transition_time(year) + 
   enter_fade() + 
   exit_reset() + 
-  ease_aes('exponential-in-out')
+  ease_aes('cubic-in-out')
 
 animate(anim_plot, 
         renderer = gifski_renderer(), 
         nframes = 500, fps = 25)
 ```
 
-According to Figure 3, the positive relationship between the log of average daily income and happiness score remains relatively consistent throughout 2005 to 2023.
+According to Figure 2, the positive relationship and form between the average daily income and happiness score remains relatively consistent throughout 2005 to 2023.
 
 ## Linear Regression
 
@@ -143,7 +143,7 @@ If we wanted to represent the model as a true linear model, we would write it as
 The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
 ```{r LM}
-#| fig-cap: "Figure 2"
+#| fig-cap: "Figure 3"
 
 # getting the mean of both variables for each country
 happy_income_averaged <- happy_income |> 
@@ -165,7 +165,7 @@ happy_income_averaged |>
   theme_bw()
 ```
 
-According to Figure 2, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
+According to Figure 3, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
 
 ### Regression Model Estimates
 
