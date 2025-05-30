@@ -222,7 +222,7 @@ model_fit_summary |>
   kable_styling(bootstrap_options = "striped")
 ```
 
-According to Table 2, the R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
+According to Table 2, the R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income, indicating that the model containing log of average daily income to predict happiness is a moderate fit.
 
 ## References
 
