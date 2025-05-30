@@ -15,7 +15,7 @@ execute:
   warning: false
 ---
 
-```{r setup}
+```{r setup, include = TRUE, echo = FALSE}
 # load packages
 library(readr)
 library(tidyverse)
@@ -26,13 +26,13 @@ library(gganimate)
 library(gifski)
 ```
 
-```{r importdata}
+```{r importdata, include = TRUE, echo = FALSE}
 # import data sets
 happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
 ```
 
-```{r pivot}
+```{r pivot,include = TRUE, echo = FALSE}
 ## make long data set 
 happy <- happy|>
   pivot_longer(cols = `2005`:`2023`,
@@ -45,14 +45,14 @@ income <- income|>
                values_to = "avg_daily_inc")
 ```
 
-```{r merge}
+```{r merge, include = TRUE, echo = FALSE}
 ## merge into one data set 
 happy_income <- happy|>
   left_join(income, 
             by = c("year","country"))
 ```
 
-```{r NAs}
+```{r NAs, include = TRUE, echo = FALSE}
 ## deal with missing values 
 happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
