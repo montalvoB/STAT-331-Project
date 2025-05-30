@@ -161,6 +161,33 @@ tidy(model) |>
 
 According to Table 1, the intercept for the model is 38.24. This means that when a country's average daily income per household is \$0, their average happiness score is 38.24 out of 100. The coefficient for the log-average daily income is 18.62. This means that for each 1% increase in a country's average daily income, their happiness score increases by an average of 18.62 points.
 
+## Model Fit Table
+
+```{r}
+
+var_response <- var(happy_income_averaged$happy_score)
+var_fitted <- var(fitted(model))
+var_residuals <- var(residuals(model))
+r_squared <- var_fitted / var_response
+
+model_fit_summary <- tibble(
+  Statistic = c("Variance in Response (A)", 
+                "Variance in Fitted Values (B)", 
+                "Variance in Residuals", 
+                "Model R-squared (B/A)"),
+  Value = c(var_response, 
+            var_fitted, 
+            var_residuals, 
+            r_squared)
+)
+
+model_fit_summary |>
+  kable(digits = 3, caption = "Model Fit Summary") |>
+  kable_styling(bootstrap_options = "striped")
+```
+
+The R-squared value of 0.658 indicates that approximately 65.8% of the variability in happiness scores is explained by the regression model.This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
+
 ## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
