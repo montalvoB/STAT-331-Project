@@ -136,7 +136,7 @@ animate(anim_plot,
         nframes = 500, fps = 25)
 ```
 
-According to Figure 2, the positive relationship and form between the average daily income and happiness score remains relatively consistent throughout 2005 to 2023.
+According to Figure 2, the positive curvilinear relationship between the average daily income and happiness score remains relatively consistent throughout 2005 to 2023.
 
 The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
