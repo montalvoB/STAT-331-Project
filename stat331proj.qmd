@@ -15,14 +15,19 @@ execute:
   warning: false
 ---
 
-```{r importdata}
-# import data sets
+```{r setup}
+# load packages
 library(readr)
 library(tidyverse)
 library(broom)
 library(knitr)
 library(kableExtra)
+library(gganimate)
+library(gifski)
+```
 
+```{r importdata}
+# import data sets
 happy <- read_csv("hapiscore_whr.csv")
 income <- read_csv("mincpcap_cppp.csv")
 ```
@@ -53,7 +58,7 @@ happy_income <- happy_income|>
   filter(!is.na(happy_score) & !is.na(avg_daily_inc))
 ```
 
-### Introduction & Data
+## Introduction & Data
 
 This analysis explores the relationship between average household income and life satisfaction across countries over time.
 
@@ -63,7 +68,7 @@ Income data is compiled by Gapminder, which integrates World Bank household surv
 
 Our observational unit is a combination of year and country. Our data set includes average household income and life satisfaction scores for up to 149 countries, mostly between 2005 and 2020. The data for happiness score collected by Gallup World Poll is reported in the World Happiness Report and is put together by Gapminder (happiness score was converted from a 0-10 scale to a 0-100 scale), and the data for daily income (for years 1981 to 2019) comes from the World Development Indicators published by the World Bank and is compiled by Gapminder.
 
-We hypothesize that a country’s average daily income and happiness are positively related, with happiness increasing more per increase in average income for smaller average incomes and tapering off towards the upper end of income values. On an individual level, the argument could be made that having more money feels hollow and leads to a decrease in happiness. However, we are looking at the average household’s income across an entire country. A higher average daily income may relate to lower poverty levels and more disposable income, and thus less stress. A report from [outworldindata.com](http://outworldindata.com) (linked below) shows a clear positive relation between GDP per capita and average happiness (as registered on the Cantril Ladder scale) across multiple countries. The assumption is that when a country’s people are able to meet their basic needs and have financial security, they are happier. 
+We hypothesize that a country’s average daily income and happiness are positively related, with happiness increasing more per increase in average income for smaller average incomes and tapering off towards the upper end of income values. On an individual level, the argument could be made that having more money feels hollow and leads to a decrease in happiness. However, we are looking at the average household’s income across an entire country. A higher average daily income may relate to lower poverty levels and more disposable income, and thus less stress. A report from [outworldindata.com](http://outworldindata.com) (linked below) shows a clear positive relation between GDP per capita and average happiness (as registered on the Cantril Ladder scale) across multiple countries. The assumption is that when a country’s people are able to meet their basic needs and have financial security, they are happier.
 
 ### Cleaning Process
 
@@ -71,19 +76,11 @@ To prepare our data for analysis, we started with two data sets—one with world
 
 ## Linear Regression
 
-In order to conduct the following linear regression we took the mean happy score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to the shape of the plot.
+In order to conduct the following linear regression we took the mean happy score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to better fit the data with a linear model.
 
-#### Linear Relationship: $$ y = 23.24 + 18.62\ln(x)$$
-
-$$e^y = e^{23.231}\cdot x^{18.623}$$
-
-Where y-hati is the estimated happiness score out of 100 and xi is the average daily income in 2017 purchasing power parity (PPP) dollars per country.
-
-#### Visualizations
+The linear model with the transformation is $$ \hat{y} = 23.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is the average daily income in 2017 purchasing power parity (PPP) dollars per country. If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 23.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be primarily using the model given in ($1$).
 
 ```{r LM}
-#| fig-cap: "Figure 1: Scatter Plot of Happiness Score by Avg Daily Income"
-
 # getting the mean of both variables for each country
 happy_income_averaged <- happy_income |> 
   group_by(country) |> 
@@ -95,42 +92,73 @@ happy_income_averaged |>
   ggplot(mapping = aes(x = avg_daily_inc,
                        y = happy_score)) + 
   geom_point() +
-  geom_smooth(method = "lm",
-              se = F) + 
+  geom_smooth(method = "lm") + 
   labs(title = "Happiness vs Average Daily Income with Log transformation",
        x = "log(Average Daily Income)",
        y = "Happiness Score",
-       caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.") + 
-  theme_minimal()
+       caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.")
 ```
+
 
 According to Figure 1, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
 
+<<<<<<< HEAD
 #### Regression Model Estimates
+=======
+```{r}
+#| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
+
+anim_plot <- happy_income |> 
+  mutate(year = as.integer(year)) |> 
+  ggplot(mapping = aes(x = log(avg_daily_inc), 
+                       y = happy_score, 
+                       size = 10)) + 
+  geom_point(alpha = 0.5,
+             color = "steelblue4",
+             show.legend = F) + 
+  labs(x = "log(Average Daily Income)", 
+       y = "", 
+       title = "Countries Happiness Score and Average Daily Income Years 2005 - 2023", 
+       subtitle = "Happiness Score (0 - 100)                    Year: {frame_time}") + 
+  theme_bw() +
+  transition_time(year) + 
+  enter_fade() + 
+  exit_reset() + 
+  ease_aes('exponential-in-out')
+
+animate(anim_plot, 
+        renderer = gifski_renderer(), 
+        nframes = 500, fps = 25)
+```
+
+
+### Regression Model Estimates 
+>>>>>>> 941ab138052024c4632f3f8e02fe278501d3201b
 
 ```{r estimates}
-#| tbl-cap: "Table 1: Model Estimates for Regression"
 
-
+# Creating the linear model
 model <- lm(happy_score ~ log(avg_daily_inc),
             data = happy_income_averaged) 
 
-tidy(model)|> 
+
+tidy(model) |> 
   kable(col.names = c("Term",
                       "Estimate",
                       "Standard Error",
                       "Statistic",
-                      "P-Value"),
-        digits = 2)|>
+                      "P-Value"))|>
   kable_styling(position = "center",
                 bootstrap_options = "striped")|>
-  row_spec(0, bold = T)
-
+  row_spec(0, bold = T) |> 
+  add_header_above(header = c("Linear Model Coefficients" = 5), bold = TRUE)
 
 ```
 
-According to Table 1, the intercept for the model is 38.24. This means that when a country's average daily income is \$0, their average happiness score is 38.24 out of 100. The coefficient for the logged average daily income is 18.62. For each 1% increase in a country's average daily income, their happiness score increases by an average of 18.62 points. Additionally, the p-value for the logged average daily income is nearly 0. This indicates there is extremely strong evidence that there is a positive statistical relationship between average daily income and happiness score.
+According to Table 1, the intercept for the model is 38.24. This means that when a country's average daily income per household is \$0, their average happiness score is 38.24 out of 100. The coefficient for the log-average daily income is 18.62. This means that for each 1% increase in a country's average daily income, their happiness score increases by an average of 18.62 points.
 
-### References
+## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
+
+
