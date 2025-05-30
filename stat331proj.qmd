@@ -80,7 +80,7 @@ In order to conduct the following linear regression we took the mean of the happ
 
 The linear model with the transformation is: $$ \hat{y} = 23.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is the average daily income in 2017 purchasing power parity (PPP) dollars per country. If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 23.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
 
-#### Visualizations
+### Visualizations
 
 The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
