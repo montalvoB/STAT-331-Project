@@ -74,12 +74,22 @@ We hypothesize that a country’s average daily income and happiness are positiv
 
 To prepare our data for analysis, we started with two data sets—one with world happiness scores and one with average daily income—and reorganized both so that each row represents a specific country and year. We then combined the two datasets so that each row included both the happiness score and income data for that country and year. If either the happiness score or income value was missing for a given country and year, we removed that row to keep the analysis consistent and reliable. After this cleaning process, we had 2,342 complete records covering countries from the years 2005 to 2023.
 
-## Data Visualization
+## Linear Regression
 
-For preliminary analysis, the following scatterplot (Figure 1) shows the relationship between average daily income and happiness score. Each point represents a country's averages of happiness score and average daily income across all years.
+Linear regression is a modeling method to evaluate the relationship between an explanatory outcome variable and one or more explanatory predictor variables. Linear regression uses the ordinary least squares method (OLS) to get estimated values that make the sum of squared errors (actual - predicted values) as small as possible. This method allows for an evaluation of the direction and strength of the predictor's effect in the model. There are four main assumptions to run a linear regression: linearity, independence, constant variance of residuals, and normally distributed residuals.
+
+In order to conduct the following linear regression, for each country across all available years, we took the averages of their happiness score and average daily income. This made it so we can have one value for each country in the data set. Additionally, we transformed our explanatory variable (average daily income) with a natural log to better fit the data with a linear model.
+
+The linear model with the transformation is: $$ \hat{y} = 38.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is a country's average daily income in 2017 purchasing power parity (PPP) dollars.
+
+If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 38.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
+
+### Visualizations
+
+For preliminary analysis, the following scatter plot (Figure 1) shows the relationship between average daily income and happiness score. Each point represents a country's averages of happiness score and average daily income across all years.
 
 ```{r}
-#| fig-cap: "Figure 1"
+#| fig-cap: "Figure 1: Scatter plot without Transformation"
 
 happy_income |> 
   group_by(country) |> 
@@ -98,7 +108,7 @@ happy_income |>
 
 As we can see, the relationship between average daily income and happiness is positive, but the form is not linear so a transformation will be needed to perform a linear analysis.
 
-The following plot displays how the trend between the log of average daily income and happiness score per country changes over the years 2005-2023.
+The following plot displays how the trend between the average daily income and happiness score per country changes over the years 2005-2023 without a log transformation.
 
 ```{r}
 #| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
@@ -127,18 +137,6 @@ animate(anim_plot,
 ```
 
 According to Figure 2, the positive relationship and form between the average daily income and happiness score remains relatively consistent throughout 2005 to 2023.
-
-## Linear Regression
-
-Linear regression is a modeling method to evaluate the relationship between an explanatory outcome variable and one or more explanatory predictor variables. Linear regression uses the ordinary least squares method (OLS) to get estimated values that make the sum of squared errors (actual - predicted values) as small as possible. This method allows for an evaluation of the direction and strength of the predictor's effect in the model. There are four main assumptions to run a linear regression: linearity, independence, constant variance of residuals, and normally distributed residuals.
-
-In order to conduct the following linear regression, for each country across all available years, we took the averages of their happiness score and average daily income. This made it so we can have one value for each country in the data set. Additionally, we transformed our explanatory variable (average daily income) with a natural log to better fit the data with a linear model.
-
-The linear model with the transformation is: $$ \hat{y} = 38.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is a country's average daily income in 2017 purchasing power parity (PPP) dollars.
-
-If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 38.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
-
-### Visualizations
 
 The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
