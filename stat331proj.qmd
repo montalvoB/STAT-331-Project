@@ -141,7 +141,7 @@ According to Figure 2, the positive curvilinear relationship between the average
 The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
 ```{r LM}
-#| fig-cap: "Figure 3"
+#| fig-cap: "Figure 3: Linear Regression Plot"
 
 # getting the mean of both variables for each country
 happy_income_averaged <- happy_income |> 
