@@ -106,7 +106,7 @@ happy_income_averaged |>
 
 According to Figure 1, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
 
-#### Regression Model Estimates 
+#### Regression Model Estimates
 
 ```{r estimates}
 #| tbl-cap: "Table 1: Model Estimates for Regression"
