@@ -76,6 +76,8 @@ To prepare our data for analysis, we started with two data sets—one with world
 
 ## Linear Regression
 
+Linear regression is a modeling method to evaluate the relationship between an explanatory outcome variable and one or more explanatory predictor variables. Linear regression uses the ordinary least squares method (OLS) to get estimated values that make the sum of squared errors (actual - predicted values) as small as possible. This method allows for an evaluation of the direct and strength of the explanatory predictor's effect in the model. There are four main assumptions to run a linear regression: linearity, independence, constant variance of residuals, and normally distributed residuals.
+
 In order to conduct the following linear regression we took the mean of the happiness score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to better fit the data with a linear model.
 
 The linear model with the transformation is: $$ \hat{y} = 23.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is the average daily income in 2017 purchasing power parity (PPP) dollars per country. If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 23.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
@@ -161,9 +163,11 @@ tidy(model) |>
 
 According to Table 1, the intercept for the model is 38.24. This means that when a country's average daily income per household is \$0, their average happiness score is 38.24 out of 100. The coefficient for the log-average daily income is 18.62. This means that for each 1% increase in a country's average daily income, their happiness score increases by an average of 18.62 points.
 
-## Model Fit Table
+### Model Fit Estimates
 
-```{r}
+The following table displays the statistics for the fit of the regression model.
+
+```{r modelfit}
 
 var_response <- var(happy_income_averaged$happy_score)
 var_fitted <- var(fitted(model))
@@ -186,7 +190,7 @@ model_fit_summary |>
   kable_styling(bootstrap_options = "striped")
 ```
 
-The R-squared value of 0.658 indicates that approximately 65.8% of the variability in happiness scores is explained by the regression model.This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
+The R-squared value of 0.658 indicates that approximately 65.8% of the variability in county's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
 
 ## References
 
