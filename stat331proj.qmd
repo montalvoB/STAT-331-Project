@@ -76,11 +76,13 @@ To prepare our data for analysis, we started with two data sets—one with world
 
 ## Linear Regression
 
-In order to conduct the following linear regression we took the mean happy score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to better fit the data with a linear model.
+In order to conduct the following linear regression we took the mean of the happiness score and average daily income for each country. This made it so we can have one value for each country in the data set. Additionally, we had to transform our explanatory variable, average daily income, with a natural log due to better fit the data with a linear model.
 
-The linear model with the transformation is $$ \hat{y} = 23.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is the average daily income in 2017 purchasing power parity (PPP) dollars per country. If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 23.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be primarily using the model given in ($1$).
+The linear model with the transformation is: $$ \hat{y} = 23.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is the average daily income in 2017 purchasing power parity (PPP) dollars per country. If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 23.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
 
 #### Visualizations
+
+The following scatter plot displays the relationship between the happiness score and the log of average daily income by country.
 
 ```{r LM}
 # getting the mean of both variables for each country
@@ -96,12 +98,15 @@ happy_income_averaged |>
   geom_point() +
   geom_smooth(method = "lm") + 
   labs(title = "Happiness vs Average Daily Income with Log transformation",
+       subtitle = "Happiness Score",
        x = "log(Average Daily Income)",
-       y = "Happiness Score",
+       y = "",
        caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.")
 ```
 
 According to Figure 1, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
+
+The following plot displays how the trend between the log of average daily income and happiness score per country changes over the years 2005-2023.
 
 ```{r}
 #| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
@@ -134,6 +139,7 @@ According to Figure 2, the positive relationship between the log of average dail
 ### Regression Model Estimates
 
 ```{r estimates}
+#| tbl-cap: "Table 1: Regression Model Estimates"
 
 # Creating the linear model
 model <- lm(happy_score ~ log(avg_daily_inc),
