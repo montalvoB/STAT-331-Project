@@ -101,8 +101,6 @@ happy_income_averaged |>
 
 According to Figure 1, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
 
-#### Regression Model Estimates
-
 ```{r}
 #| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
 
@@ -116,7 +114,7 @@ anim_plot <- happy_income |>
              show.legend = F) + 
   labs(x = "log(Average Daily Income)", 
        y = "", 
-       title = "Countries Happiness Score and Average Daily Income Years 2005 - 2023", 
+       title = "Country's Happiness Score and Average Daily Income Years 2005 - 2023", 
        subtitle = "Happiness Score (0 - 100)                    Year: {frame_time}") + 
   theme_bw() +
   transition_time(year) + 
@@ -128,6 +126,8 @@ animate(anim_plot,
         renderer = gifski_renderer(), 
         nframes = 500, fps = 25)
 ```
+
+According to Figure 2, the positive relationship between the log of average daily income and happiness score remains relatively consistent from 2005-2023.
 
 ### Regression Model Estimates
 
