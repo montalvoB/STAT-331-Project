@@ -99,8 +99,9 @@ happy_income_averaged |>
        caption = "Happiness score and average daily income are averaged across all available years for each country in the data set.")
 ```
 
-
 According to Figure 1, there is a strong, positive linear relationship with no apparent unusual values between a country's happiness score and their average daily income (after a natural log transformation on average daily income). This means that as average daily income increases in a country, the estimated happiness score is also expected to increase.
+
+#### Regression Model Estimates
 
 ```{r}
 #| fig-cap: "Figure 2: Animated - Relationship Between Happiness Score and Avg Daily Income Over Time"
@@ -128,8 +129,7 @@ animate(anim_plot,
         nframes = 500, fps = 25)
 ```
 
-
-### Regression Model Estimates 
+### Regression Model Estimates
 
 ```{r estimates}
 
@@ -156,5 +156,3 @@ According to Table 1, the intercept for the model is 38.24. This means that when
 ## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
-
-
