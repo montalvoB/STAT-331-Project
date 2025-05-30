@@ -76,7 +76,7 @@ To prepare our data for analysis, we started with two data sets—one with world
 
 ## Data Visualization
 
-For preliminary analysis, the following scatterplot (Figure 1) shows the relationship between average daily income and happiness score. Each point represents a country's averages of happiness score and average daily income across all years. 
+For preliminary analysis, the following scatterplot (Figure 1) shows the relationship between average daily income and happiness score. Each point represents a country's averages of happiness score and average daily income across all years.
 
 ```{r}
 #| fig-cap: "Figure 1"
@@ -96,7 +96,7 @@ happy_income |>
   theme_bw()
 ```
 
-As we can see, the relationship between average daily income and happiness is positive, but the form is not linear so a transformation will be needed to perform a linear analysis. 
+As we can see, the relationship between average daily income and happiness is positive, but the form is not linear so a transformation will be needed to perform a linear analysis.
 
 The following plot displays how the trend between the log of average daily income and happiness score per country changes over the years 2005-2023.
 
@@ -134,7 +134,7 @@ Linear regression is a modeling method to evaluate the relationship between an e
 
 In order to conduct the following linear regression, for each country across all available years, we took the averages of their happiness score and average daily income. This made it so we can have one value for each country in the data set. Additionally, we transformed our explanatory variable (average daily income) with a natural log to better fit the data with a linear model.
 
-The linear model with the transformation is: $$ \hat{y} = 38.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is a country's average daily income in 2017 purchasing power parity (PPP) dollars. 
+The linear model with the transformation is: $$ \hat{y} = 38.24 + 18.62\ln(x_i),$$ {#eq-ln} where $\hat{y}$ is the estimated happiness score out of 100 and $x_i$ is a country's average daily income in 2017 purchasing power parity (PPP) dollars.
 
 If we wanted to represent the model as a true linear model, we would write it as $$ \hat{y} = 38.24 + 18.62 \cdot z_i,$$ {#eq-linear} where $\hat{y}$ is the estimated happiness score out of 100 and $z_i$ is the natural log of the average daily income in 2017 purchasing power parity (PPP) dollars per country. However, for the sake of this report, we will be using the model given in ($1$).
 
@@ -219,7 +219,7 @@ model_fit_summary |>
   kable_styling(bootstrap_options = "striped")
 ```
 
-The R-squared value of 0.658 indicates that approximately 65.8% of the variability in county's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
+The R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income. This suggests a moderately strong fit, indicating that income is a meaningful factor in predicting national happiness.
 
 ## References
 
