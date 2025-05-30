@@ -120,7 +120,7 @@ anim_plot <- happy_income |>
   exit_reset() + 
   ease_aes('exponential-in-out')
 
-animate(test, 
+animate(anim_plot, 
         renderer = gifski_renderer(), 
         nframes = 500, fps = 25)
 ```
