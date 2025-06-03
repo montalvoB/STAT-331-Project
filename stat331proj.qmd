@@ -222,6 +222,8 @@ model_fit_summary |>
 
 According to Table 2, the R-squared value of 0.658 indicates that approximately 65.8% of the variability in country's happiness scores is explained by the regression model containing log of average daily income, indicating that the model containing log of average daily income to predict happiness is a moderate fit.
 
+## Cross Validation \~ *K* Folds
+
 ## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
