@@ -322,6 +322,10 @@ r2_results <- tibble(
 
 ```
 
+## Conclusion 
+
+In summary, this analysis shows a positive association between average daily income and happiness score across countries. Our linear regression showed predictive performance **INSERT K FOLD CONCLUSION.** Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor. This underscores the value of economic development alongside social policies for a nation's happiness. In the future, we suggest adding more control variables and checking model conditions more thoroughly to have a more accurate gauge of the results.
+
 ## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
