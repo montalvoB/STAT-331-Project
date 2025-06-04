@@ -283,7 +283,7 @@ get_fold_r2 <- function(fold_number, data) {
 
 r2_results <- tibble(
   fold = 1:k,
-  r2   = map_dbl(1:k, ~ get_fold_r2(.x, happy_income_folds))
+  r2   = map_dbl(1:k, ~ get_fold_r2(.x, happy_income_averaged))
 )
 
 mean_r2 <- mean(r2_results$r2)
@@ -318,8 +318,6 @@ r2_results <- tibble(
   fold = 1:14,
   r2   = map_dbl(1:14, ~ get_fold_r2(.x, happy_income_folds))
 )
-
-
 
 
 ```
