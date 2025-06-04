@@ -327,3 +327,5 @@ r2_results <- tibble(
 ## References
 
 Ortiz-Ospina, E., & Roser, M. (2024). *Happiness and life satisfaction*. Our World in Data. <https://ourworldindata.org/happiness-and-life-satisfaction>
+
+GitHub was used for collaboration on this report. The GitHub repository can be accessed at: <https://github.com/montalvoB/STAT-331-Project>
