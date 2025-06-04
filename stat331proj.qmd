@@ -224,7 +224,7 @@ According to Table 2, the R-squared value of 0.658 indicates that approximately 
 
 ## Cross Validation 14 *K* Folds
 
-This section conducts a k-fold cross validation method. This validation is important because it gives a sense of how well our model can be used to predict new data, rather than simply fitting the data it has already been tested on. The first step is to have the user decide on the number of folds, k. In this case, we have **BLANK** k folds which allows us to have at least ten observations in each fold. Next, we must split the data randomly into the **k** groups. In each group, we will fit the same regression model as above and predict the outcomes to calculate how much of the variation in happiness score is explained by average daily income (model R\^2). We repeat this process for all **k** folds and take the average. We then have to compare the original model's R\^2 with the average R\^2 to see whether the model is over or under fitting. In the case of over-fitting, the model R\^2 will perform better (be higher) than the average R\^2. The case of under-fitting would arise if the model R\^2 is worse (is lower) than the average R\^2. If the R\^2 values are relatively equal, the model is neither over nor under-fit.
+This section conducts a k-fold cross validation method. This validation is important because it gives a sense of how well our model can be used to predict new data, rather than simply fitting the data it has already been tested on. The first step is to have the user decide on the number of folds, k. In this case, we have 14 k folds which allows us to have at least ten observations in each fold. Next, we must split the data randomly into the 14 groups. In each group, we will fit the same regression model as above and predict the outcomes to calculate how much of the variation in happiness score is explained by average daily income (model R\^2). We repeat this process for all 14 folds and take the average. We then have to compare the original model's R\^2 with the average R\^2 to see whether the model is over or under fitting. In the case of over-fitting, the model R\^2 will perform better (be higher) than the average R\^2. The case of under-fitting would arise if the model R\^2 is worse (is lower) than the average R\^2. If the R\^2 values are relatively equal, the model is neither over nor under-fit.
 
 ## 
 
@@ -253,6 +253,7 @@ predictions <- map(.x = 1:k,
   
 
 ```
+
 ```{r}
 
 k <- 14
@@ -291,9 +292,6 @@ mean_r2 <- mean(r2_results$r2)
 
 ```
 
-
-
-
 ```{r}
 
 happy_income_folds <- happy_income_averaged |>
@@ -325,9 +323,6 @@ r2_results <- tibble(
 
 
 ```
-
-
-
 
 ## References
 
