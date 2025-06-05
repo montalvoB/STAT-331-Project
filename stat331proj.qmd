@@ -262,6 +262,10 @@ r2_results <- tibble(
 
 mean_r2 <- mean(r2_results$r2)
 
+mean_r2|>
+  kable(digits = 3,
+        col.names = "Mean R-Squared",
+        caption = "Mean R-Squared Value for K-Folds")
 ```
 
 ## Conclusion
