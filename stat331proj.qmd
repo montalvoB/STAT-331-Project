@@ -264,14 +264,37 @@ mean_r2 <- mean(r2_results$r2)
 
 mean_r2|>
   kable(digits = 3,
-        col.names = "Mean R-Squared",
-        caption = "Mean R-Squared Value for K-Folds")|>
+        col.names = "Mean R²",
+        caption = "Mean R² Value for K-Folds")|>
   kable_classic(full_width = F,
                 bootstrap_options = "striped") |> 
   row_spec(row = 0, bold = T, align = "c")
 ```
 
 ### K Fold Plot
+
+```{r kplot}
+r2_results|>
+  ggplot(aes(x = fold,
+             y = r2)) + 
+  geom_point() + 
+  geom_hline(yintercept = mean_r2, color = "orange3", linetype = 2) + 
+  annotate(
+    "text",
+    x      = Inf,                
+    y      = mean_r2,           
+    label  = "Mean R² Across Folds",
+    color  = "orange3",
+    hjust  = 1.1,                
+    vjust  = -0.5                
+  ) + 
+  labs(
+    x = "Fold Number",
+    y = "",
+    title = "Plot of R² Values for K Fold Cross Validation",
+    subtitle = "R² Value") + 
+  theme_bw()
+```
 
 ## Conclusion
 
