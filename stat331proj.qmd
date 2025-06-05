@@ -235,7 +235,7 @@ This section conducts a k-fold cross validation method. This validation is impor
 set.seed(100)
 
 k <- 14
-n <- 163
+n <- nrow(happy_income_averaged)
 
 
 happy_income_averaged <- happy_income_averaged |> 
@@ -313,7 +313,7 @@ According to Table 3, the mean R² value across the 14 folds is 67.2%. This mean
 
 ## Conclusion
 
-In summary, this analysis shows a positive association between average daily income and happiness score across countries. As average daily income increases, happiness score increases then plateaus. To perform the statistical test, we took the averages of both average daily income and happiness score for each country across all available years, we used a natural log transformation on average daily income to make the form of our data linear. Other assumptions were not checked. Our linear regression shows average daily income to be a significant predictor of happiness (t = 17.59, df = 161, p < 0.0001). With an R² of 0.658 from our original model and an R² of 0.672 from our 14-fold cross validation, being relatively close, reveals neither extreme over or under fitting of our original model. Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor. This underscores the value of economic development alongside social policies for a nation's happiness. 
+In summary, this analysis shows a positive association between average daily income and happiness score across countries. As average daily income increases, happiness score increases then plateaus. To perform the statistical test, we took the averages of both average daily income and happiness score for each country across all available years, we used a natural log transformation on average daily income to make the form of our data linear. Other assumptions were not checked. Our linear regression shows average daily income to be a significant predictor of happiness (t = 17.59, df = 161, p \< 0.0001). With an R² of 0.658 from our original model and an R² of 0.672 from our 14-fold cross validation, being relatively close, reveals neither extreme over or under fitting of our original model. Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor. This underscores the value of economic development alongside social policies for a nation's happiness.
 
 In the future, we suggest adding more potential predictors and checking model conditions more thoroughly to have a more accurate gauge of the results and build a better model.
 
