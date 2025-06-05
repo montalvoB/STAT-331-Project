@@ -278,7 +278,7 @@ mean_r2|>
 
 ```{r kplot}
 #|: fig-cap: "Figure 4: Plot of R² for K-Folds"
-#| fig-align: center
+#|: fig-align: center
 
 
 r2_results|>
