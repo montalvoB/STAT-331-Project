@@ -276,6 +276,8 @@ mean_r2|>
 
 ### K Fold Plot
 
+The following plot displays the distribution of R² values for each of the 14 k folds.
+
 ```{r kplot}
 #| fig-cap: "Figure 4: Plot of R² for 14 K-Folds"
 #| fig-align: center
