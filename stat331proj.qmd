@@ -309,7 +309,7 @@ According to Table 3, the mean R² value across the 14 k folds is 67.2%. This me
 
 ## Conclusion
 
-In summary, this analysis shows a positive association between average daily income and happiness score across countries. Our linear regression showed an effective predictive performance since the k fold cross validation revealed neither extreme over or under fitting**.** Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor according to the linear regression output. This underscores the value of economic development alongside social policies for a nation's happiness. In the future, we suggest adding more control variables and checking model conditions more thoroughly to have a more accurate gauge of the results.
+In summary, this analysis shows a positive association between average daily income and happiness score across countries. Our linear regression showed an effective predictive performance since the k fold cross validation revealed neither extreme over or under fitting. Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor according to the linear regression output (t = 17.59, df = 161, p < 0.0001). This underscores the value of economic development alongside social policies for a nation's happiness. In the future, we suggest adding more control variables and checking model conditions more thoroughly to have a more accurate gauge of the results.
 
 ## References
 
