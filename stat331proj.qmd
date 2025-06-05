@@ -303,6 +303,8 @@ r2_results|>
   theme_bw()
 ```
 
+According to Table 3, the mean R² value across the 14 k folds is 67.2%. This means that across the 14 folds, average daily income explains 67.2% of the variability in happiness scores across countries. When comparing this to our original model's R² of 65.8%, these are very close. This means that our model is a relatively good fit since the R² values are close in values. One could argue that our model is underfit, likely do to the log-transformation of average daily income. Overall, our model has shown to be a solid fit in predicting happiness score from average daily income.
+
 ## Conclusion
 
 In summary, this analysis shows a positive association between average daily income and happiness score across countries. Our linear regression showed predictive performance **INSERT K FOLD CONCLUSION.** Our findings suggest that while income may not be the sole determinant of happiness, it remains a significant predictor. This underscores the value of economic development alongside social policies for a nation's happiness. In the future, we suggest adding more control variables and checking model conditions more thoroughly to have a more accurate gauge of the results.
