@@ -311,7 +311,7 @@ r2_results|>
   theme_bw()
 ```
 
-According to Table 3, the mean R² value across the 14 folds is 67.2%. This means that across the 14 folds, average daily income explains 67.2% of the variability in happiness scores across countries. When comparing this to our original model's R² of 65.8%. With only about a 1.5% difference in the R² values, these two R² values are arguably close, so our model is neither underfit or overfit. One could argue that our model is underfit because of this 1.5% difference, likely do to the log-transformation of average daily income, but it is not a drastic difference, so our conclusion would be the same. Overall, our model has shown to be a solid fit in predicting happiness score from average daily income.
+According to Table 3, the mean R² value across the 14 folds is 67.2%. This means that across the 14 folds, average daily income explains 67.2% of the variability in happiness scores across countries. When comparing this to our original model's R² of 65.8%. With only a difference in the R² values of about 1.5 percentage points, these two R² values are arguably close, so our model is neither underfit or overfit. One could argue that our model is underfit because of this 1.5 percentage point difference, likely do to the log-transformation of average daily income, but it is not a drastic difference, so our conclusion would be the same. Overall, our model has shown to be a solid fit in predicting happiness score from average daily income.
 
 ## Conclusion
 
